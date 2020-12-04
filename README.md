@@ -28,7 +28,7 @@ Dependencies:
 
 
 Required Materials:
-* 1 x Hypersonic Sensor
+* 1 x UltraSonic Sensor
 * 1 x DC motor Controller
 * 1 x 8 ohm speaker
 * 1 x Micro sd card (any size will do)
