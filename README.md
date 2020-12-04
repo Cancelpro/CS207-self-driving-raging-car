@@ -41,3 +41,13 @@ Required Materials:
 
 Build Instructions
 ============
+ 
+ ![alt text][pic3]
+
+[pic3]: https://github.com/Cancelpro/CS207-self-driving-raging-car/blob/main/img/pic3.jpg
+
+Here is is a visual representation of the circuit. (I seriously tried to keep it as clean as possible)
+
+ ![alt text][pic4]
+
+[pic4]: https://github.com/Cancelpro/CS207-self-driving-raging-car/blob/main/img/pic4.jpg
