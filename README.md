@@ -7,4 +7,4 @@ If the vehicle collides with an object two times total, it will scream "NOO" and
 
 ![alt text][pic1]
 
-[pic1]: 
+[pic1]: https://github.com/Cancelpro/CS207-self-driving-raging-car/blob/main/img/pic1.jpg "Head on Shot"
