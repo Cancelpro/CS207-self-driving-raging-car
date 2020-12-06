@@ -26,7 +26,7 @@ int in3 = 2;
 int in4 = 3;
 int enB = 0; 
 
-//Create a timer with 500ms so our arduino will not start immediatelly.
+//Create a timer with 500ms so our arduino will not start immediatly.
 int timer = 500;
 
 //Setup our variable for our ultrasonic sensor
@@ -40,6 +40,14 @@ long duration;
 bool hitWall = false;
 void setup() {
   //Setup our DC motor pins as output and hsEcho as INPUT
+  //I used Dejan's tutorial for setup and how to use my DC motor controller.
+
+  //Title:  Arduino DC Motor Control Tutorial – L298N | PWM | H-Bridge
+  //Author: Dejan Nedelkovski 
+  //Date: August 9, 2017
+  //Code Version: 1.0
+  //Availability: https://howtomechatronics.com/tutorials/arduino/arduino-dc-motor-control-tutorial-l298n-pwm-h-bridge/
+  
   pinMode(enA, OUTPUT);
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
@@ -57,23 +65,9 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-  //This Code is borrowed from Dejan some modifications are my own:
-  //use our ultrasonic sensor to send out sound.
-  digitalWrite(hsTrig, LOW);
-  delayMicroseconds(2);
-  digitalWrite(hsTrig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(hsTrig, LOW);
-
-  //Now receive our sound with pulseIn and store it in duration
-  duration = pulseIn(hsEcho, HIGH);
-
-  //Big thanks to Dejan for this one: 
-  //I used his formula to calculate distance :)
-  distance = duration*0.034/2;
-  Serial.println(rageCounter);
-
+  
+  UltrasonicPulse();
+  
   //Check if the distance is lower than 20 and it hasn't hit a wall AND isn't actively raging:
   //We move our vehicle backwards and set hitWall to true, to avoid call this if statement too soon.
   
@@ -144,11 +138,17 @@ void loop() {
     }
   }
 
+}
+
 PlaySound(){
 
-  //Thanks Purohit for this code.
-    //Sets up our audio speaker on pin 9.
-    //this is done here because if I did it in setup like Purohit's tutorial I would run out of memory and crash the arduino
+
+  //Title:  How to Make an Audio Player With Speaker Using the Arduino Uno
+  //Author: Sarvagnya Purohit
+  //Date: March 27, 2016
+  //Code Version: 1.0
+  //Availability: https://maker.pro/arduino/projects/arduino-audio-player
+  
     audio.speakerPin = 9;
 
    //check if the sd can load
@@ -162,7 +162,31 @@ PlaySound(){
     audio.play("no.wav");
 }
 
+
+
+void UltrasonicPulse(){
+
+  //Title: Ultrasonic Sensor HC-SR04 and Arduino Tutorial
+  //Author: Dejan Nedelkovski
+  //Date: November 24, 2015
+  //Code Version: 1.0
+  //Availability: https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/
+  
+  
+  digitalWrite(hsTrig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(hsTrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(hsTrig, LOW);
+
+  //Now receive our sound with pulseIn and store it in duration
+  duration = pulseIn(hsEcho, HIGH);
+
+  //Big thanks to Dejan for this one: 
+  //I used his formula to calculate distance :)
+  distance = duration*0.034/2;
 }
+
 void TurnRight(){
     //Turns off the right tire and forces our vehicle to turn left.
     digitalWrite(in1, LOW);
